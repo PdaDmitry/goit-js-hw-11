@@ -1,26 +1,56 @@
-export function rend() {
-  console.log('export from render!');
+'use strict';
+
+export function createGalleryMarkup() {
+  return `
+  <form class="form">
+    <input type="text" name="picture" placeholder="Search images..." />
+    <button type="submit" data-search>Search</button>
+  </form>
+  <ul class="gallery"></ul>`;
 }
 
-function elLiGallery(images) {
+export function renderListGallery(images) {
   const item = images
     .map(el => {
-      const { preview, original, description } = el;
+      const {
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      } = el;
       return `<li class="gallery-item">
-  <a class="gallery-link" href="${original}">
+  <a class="gallery-link" href="${largeImageURL}">
     <img
       class="gallery-image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
+      src="${webformatURL}"
+      data-source="${largeImageURL}"
+      alt="${tags}"
     />
+    <ul class="image-info">
+      <li class="info-item">
+        <span class="info-item">Likes</span>
+        <span class="item-quantity">${likes}</span>
+      </li>
+       <li class="info-item">
+        <span class="info-item">Views</span>
+        <span class="item-quantity">${views}</span>
+      </li>
+       <li class="info-item">
+        <span class="info-item">Comments</span>
+        <span class="item-quantity">${comments}</span>
+      </li>
+       <li class="info-item">
+        <span class="info-item">Downloads</span>
+        <span class="item-quantity">${downloads}</span>
+      </li>
+    </ul>
   </a>
-</li>`;
+  </li>`;
     })
     .join('\n\n');
 
   return item;
 }
-
-// const htmllist = elLiGallery(images);
-// gallery.innerHTML = htmllist;
