@@ -6,6 +6,7 @@ export function createGalleryMarkup() {
     <input type="text" name="picture" placeholder="Search images..." />
     <button type="submit" data-search>Search</button>
   </form>
+  <span class="loader"></span>
   <ul class="gallery"></ul>`;
 }
 
@@ -27,7 +28,8 @@ export function renderListGallery(images) {
       class="gallery-image"
       src="${webformatURL}"
       data-source="${largeImageURL}"
-      alt="${tags}"
+      alt=""
+      title="${tags}"
     />
     <ul class="image-info">
       <li class="info-item">

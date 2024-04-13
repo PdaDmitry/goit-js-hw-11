@@ -13,7 +13,7 @@ export class ImageServer {
   }
 
   //  iziToast.show({
-  //     message: 'Please choose a date in the future',
+  //     message: 'Sorry, there are no images matching your search query. Please try again!',
   //     messageSize: '16px',
   //     messageWeight: '400',
   //     backgroundColor: '#ef4040',
