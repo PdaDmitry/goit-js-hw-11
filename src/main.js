@@ -29,8 +29,13 @@ button.classList.add('btn-search');
 
 formEl.addEventListener('submit', e => {
   e.preventDefault();
-  let q = e.target.elements.picture.value;
-  if (!q) return alert('The form field must be filled in!');
+
+  let q = e.target.elements.picture.value.trim();
+  if (!q) {
+    gallery.innerHTML = '';
+    e.target.reset();
+    return alert('The form field must be filled in!');
+  }
 
   let images = new ImageServer(q);
   loader.classList.remove('is-hidden');
@@ -38,30 +43,31 @@ formEl.addEventListener('submit', e => {
   images
     .getImages()
     .then(data => {
+      if (data.hits.length === 0) {
+        gallery.innerHTML = '';
+        throw new Error();
+      }
+
       const galleryHtml = renderListGallery(data.hits);
-      if (data.hits.length === 0)
-        throw new Error(
-          iziToast.show({
-            message:
-              'Sorry, there are no images matching your search query. Please try again!',
-            messageSize: '16px',
-            messageWeight: '400',
-            backgroundColor: '#ef4040',
-            messageColor: '#fff',
-            position: 'topRight',
-            iconUrl: './img/error.svg',
-          })
-        );
       gallery.innerHTML = galleryHtml;
 
       const show = new SimpleLightbox('.gallery a');
       show.refresh();
     })
     .catch(error => {
-      console.error(error);
+      iziToast.show({
+        message:
+          'Sorry, there are no images matching your search query. Please try again!',
+        messageSize: '16px',
+        messageWeight: '400',
+        backgroundColor: '#ef4040',
+        messageColor: '#fff',
+        position: 'topRight',
+        iconUrl: './img/error.svg',
+      });
     })
     .finally(() => {
       loader.classList.add('is-hidden');
+      e.target.reset();
     });
-  e.target.reset();
 });

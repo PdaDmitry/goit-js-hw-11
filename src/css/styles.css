@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: "Montserrat",
         sans-serif;
@@ -207,4 +206,9 @@ button {
     100% {
         transform: rotate(360deg)
     }
+}
+
+.iziToast-close {
+    filter: brightness(0) invert(1);
+    color: white;
 }

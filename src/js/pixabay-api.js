@@ -11,14 +11,4 @@ export class ImageServer {
     const url = this.URL;
     return fetch(url).then(response => response.json());
   }
-
-  //  iziToast.show({
-  //     message: 'Sorry, there are no images matching your search query. Please try again!',
-  //     messageSize: '16px',
-  //     messageWeight: '400',
-  //     backgroundColor: '#ef4040',
-  //     messageColor: '#fff',
-  //     position: 'topRight',
-  //     iconUrl: './img/error.svg',
-  //   });
 }

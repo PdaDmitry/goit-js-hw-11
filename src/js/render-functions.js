@@ -4,7 +4,7 @@ export function createGalleryMarkup() {
   return `
   <form class="form">
     <input type="text" name="picture" placeholder="Search images..." />
-    <button type="submit" data-search>Search</button>
+    <button type="submit">Search</button>
   </form>
   <span class="loader"></span>
   <ul class="gallery"></ul>`;
