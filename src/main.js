@@ -47,7 +47,8 @@ formEl.addEventListener('submit', e => {
   let q = e.target.elements.picture.value.trim();
   if (!q) {
     e.target.reset();
-    return showIziToast('The form field must be filled in!');
+    showIziToast('The form field must be filled in!');
+    return;
   }
 
   loader.classList.remove('is-hidden');
