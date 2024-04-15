@@ -1,5 +1,3 @@
-'use strict';
-
 export function createGalleryMarkup() {
   return `
   <form class="form">
